@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TokenComponent } from './token.component';
 
 
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: () => import('./main/main.module').then(m => m.MainModule)
-  },
-  {
-    path: '**',
-    redirectTo: '/token',
-    pathMatch: 'full'
+    path: 'token',
+    component: TokenComponent
   }
 ];
 
@@ -18,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class TokenRoutingModule { }
