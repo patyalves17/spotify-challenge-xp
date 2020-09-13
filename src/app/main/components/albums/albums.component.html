@@ -1,7 +1,8 @@
-<p>albums</p>
-
-
-<div *ngFor="let album of albums">
-  <p>{{album.name}}</p>
-
+<div class="albums">
+  <p *ngIf="filter">Resultados por {{filter}}</p>
+  <div class="albums__items">
+    <div class="albums__items__item" *ngFor="let album of albums">
+      <app-album-card [album]="album" ($clicked)="showAlbum(album)"></app-album-card>
+    </div>
+  </div>
 </div>

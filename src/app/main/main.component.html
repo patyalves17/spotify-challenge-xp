@@ -1,4 +1,4 @@
-<app-search (typing$)="doSearch($event)"></app-search>
-
-
-<app-albums [albums]=albums></app-albums>
+<div class="content">
+  <app-search (typing$)="doSearch($event)"></app-search>
+  <app-albums [albums]="albums" [filter]="filter"> </app-albums>
+</div>

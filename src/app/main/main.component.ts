@@ -8,6 +8,7 @@ import { MainService } from '../services/main.service';
 })
 export class MainComponent implements OnInit {
   albums = [];
+  filter: string = '';
 
   constructor(private mainService: MainService) { }
 
@@ -16,9 +17,9 @@ export class MainComponent implements OnInit {
 
 
   doSearch($event) {
+    this.filter = $event;
     this.mainService.getSearch($event).subscribe(res => {
       this.albums = res['albums']['items'];
-      console.log(this.albums);
     });
   }
 

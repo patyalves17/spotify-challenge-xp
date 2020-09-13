@@ -1,0 +1,9 @@
+.album {
+  display: flex;
+  flex-direction: column;
+
+  &__image {
+    width: 159px;
+  }
+
+}

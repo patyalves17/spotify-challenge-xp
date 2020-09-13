@@ -1,0 +1,11 @@
+.albums{
+  &__items{
+    display: flex;
+    flex-wrap:  wrap ;
+
+    &__item{
+      padding: 25px;
+      width: 208px;
+    }
+  }
+}

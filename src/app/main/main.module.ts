@@ -4,6 +4,7 @@ import { MainRoutingModule } from './main-routing.module';
 import { SearchComponent } from './components/search/search.component';
 import { MainComponent } from './main.component';
 import { AlbumsComponent } from './components/albums/albums.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -15,7 +16,8 @@ import { AlbumsComponent } from './components/albums/albums.component';
   ],
   imports: [
     CommonModule,
-    MainRoutingModule
+    MainRoutingModule,
+    SharedModule
   ]
 })
 export class MainModule { }

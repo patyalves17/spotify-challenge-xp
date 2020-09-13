@@ -8,9 +8,15 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AlbumsComponent implements OnInit {
 
   @Input() albums: [];
+  @Input() filter: string;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  showAlbum(item) {
+    console.log(item);
+
   }
 }
