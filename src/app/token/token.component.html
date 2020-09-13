@@ -1,11 +1,8 @@
 <div class="token">
-  <form>
-    <h1 class="body__high-emphasis">Token</h1>
-    <input type="text" />
-    <button type="button">Acessar</button>
+  <form class="token__form">
+    <h1 class="title tertiary__text text-center ma-4">Spotify</h1>
+    <input id="username" name="username" class="token__form__input" placeholder="username" type="text" />
+    <button type="button" class="token__form__btn my-4">Acessar</button>
   </form>
-  <a (click)="getToken()">Gerar Token</a>
-
-
-
+  <a class="caption text-uppercase token__link" (click)="getToken()">gerar token</a>
 </div>

@@ -1,1 +1,35 @@
 @import './../../../../assets/scss/typography.scss';
+
+.search {
+  position: relative;
+  margin-top: 16px;
+  margin-bottom: 8px;
+
+  &__input {
+    background: none;
+    border: none;
+    border-bottom: 2px solid $text-primary;
+    color: $text-primary;
+    padding: 4px;
+    outline: none;
+    font-size: 48px;
+    width: 100%;
+  }
+
+  &__input:focus ~ label, &__input:valid ~ label {
+    top: -12px;
+    font-size: 12px;
+    color: $text-secondary;
+  }
+
+  label {
+    font-size: 48px;
+    color: $text-primary;
+    position:absolute;
+    pointer-events:none;
+    left: 5px;
+    transition:0.2s ease all;
+    -moz-transition:0.2s ease all;
+    -webkit-transition:0.2s ease all;
+  }
+}

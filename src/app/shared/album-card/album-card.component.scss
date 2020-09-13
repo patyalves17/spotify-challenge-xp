@@ -1,9 +1,15 @@
+@import '../../../assets/scss/typography.scss';
+
 .album {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
 
   &__image {
-    width: 159px;
+    height: 160px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 50%;
+    }
   }
 
 }

@@ -1,10 +1,25 @@
-<p>DEtails</p>
-<div *ngIf="album" class="details">
-  <img [src]=" album.images[0].url" [alt]="album.name" class="details__image" />
-
-  <ul>
-    <li *ngFor="let track of album.tracks.items">
-      {{track.track_number}} - {{track.name}} {{msToTime(track.duration_ms)}}
-    </li>
-  </ul>
+<div class="content">
+  <p class="secondary__text body my-8"> <i class="back"></i> Voltar</p>
+  <div *ngIf="album" class="details">
+    <div class="details__album">
+      <img [src]=" album.images[0].url" [alt]="album.name" />
+      <div class="text-center">
+        <p class="body secondary__text my-2">{{album.name}}</p>
+        <p class="caption primary__text">{{album.artists[0].name}}</p>
+      </div>
+    </div>
+    <div class="details__tracks">
+      <ul>
+        <li *ngFor="let track of album.tracks.items">
+          <span class="primary__text">
+            {{track.track_number}}.
+            <span class="secondary__text">{{track.name}}</span>
+          </span>
+          <span class="primary__text">
+            {{msToTime(track.duration_ms)}}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

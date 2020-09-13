@@ -1,3 +1,9 @@
+$primary: #1ed15d;
+$secondary: #999;
+$tertiary: #fafafa;
+$text-primary: #999;
+$text-secondary: #fafafa;
+$text-tertiary: #fff;
 
 * {
   font-family: 'Roboto', sans-serif;
@@ -21,4 +27,100 @@ label{
     text-align: left;
     color: #999;
   }
+}
+
+.title {
+  font-size: 48px;
+}
+
+.sub-title {
+  font-size: 24px;
+}
+
+.heading {
+  font-size: 18px;
+}
+
+.body {
+  font-size: 16px;
+}
+
+.caption {
+  font-size: 14px;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-start {
+  text-align: left;
+}
+
+.text-end {
+  text-align: right;
+}
+
+.primary {
+  background-color: $primary;
+}
+
+.primary__text {
+  color: $text-primary;
+}
+
+.secondary {
+  background-color: $secondary;
+}
+
+.secondary__text {
+  color: $text-secondary;
+}
+
+.tertiary {
+  background-color: $tertiary;
+}
+
+.tertiary__text {
+  color: $text-tertiary;
+}
+
+
+@for $i from 1 through 8 {
+  .pa-#{$i} {
+    padding: #{$i * 4}px;
+  }
+
+  .px-#{$i} {
+    padding: 0 #{$i * 4}px;
+  }
+
+  .py-#{$i} {
+    padding: #{$i * 4}px 0;
+  }
+
+  .ma-#{$i} {
+    margin: #{$i * 4}px;
+  }
+
+  .mx-#{$i} {
+    margin: 0 #{$i * 4}px;
+  }
+
+  .my-#{$i} {
+    margin: #{$i * 4}px 0;
+  }
+
 }

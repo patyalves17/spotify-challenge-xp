@@ -1,5 +1,82 @@
-.details{
-  &__image{
-    max-width: 300px;
-  }
+@import '../../assets/scss/typography.scss';
+
+.back {
+  border: solid;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
 }
+
+@media only screen and (max-width: 600px) {
+    .details{
+      display: flex;
+      flex-direction: column;
+
+      &__album{
+        justify-content: center;
+        padding: 16px;
+        img {
+          display: flex;
+          max-width: 300px;
+          margin: 0 auto;
+        }
+      }
+
+      &__tracks{
+        padding: 16px;
+        width: 100%;
+
+        ul {
+          list-style-type: none;
+
+          li {
+            display: flex;
+            justify-content: space-between;
+            margin: 16px 0;
+            cursor: pointer;
+
+            &:hover {
+              opacity: 50%;
+            }
+          }
+        }
+      }
+    }
+}
+
+@media only screen and (min-width: 600px){
+    .details{
+      display: flex;
+      flex-direction: row;
+
+      &__album{
+        padding: 16px;
+        img {
+          max-width: 300px;
+        }
+      }
+
+      &__tracks{
+        padding: 16px;
+        width: 100%;
+
+        ul {
+          list-style-type: none;
+
+          li {
+            display: flex;
+            justify-content: space-between;
+            margin: 16px 0;
+            cursor: pointer;
+
+            &:hover {
+              opacity: 50%;
+            }
+          }
+        }
+      }
+    }
+}
+

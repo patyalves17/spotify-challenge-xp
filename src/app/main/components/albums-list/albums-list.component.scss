@@ -1,11 +1,15 @@
-.albums{
-  &__items{
-    display: flex;
-    flex-wrap:  wrap ;
+@import './../../../../assets/scss/typography.scss';
 
-    &__item{
-      padding: 25px;
-      width: 208px;
-    }
+.albums{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-gap: 48px;
+
+  &__items{
+    display: grid;
+    height: 220px;
+    grid-gap: 48px;
+    align-items: center;
+    width: 100%;
   }
 }
