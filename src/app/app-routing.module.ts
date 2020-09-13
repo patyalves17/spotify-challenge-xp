@@ -8,7 +8,7 @@ const routes: Routes = [
     loadChildren: () => import('./token/token.module').then(m => m.TokenModule)
   },
   {
-    path: 'main',
+    path: 'albums',
     loadChildren: () => import('./main/main.module').then(m => m.MainModule)
   },
   {

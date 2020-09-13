@@ -19,7 +19,7 @@ export class TokenComponent implements OnInit {
       this.code = params['code'];
       if (this.code) {
         this.authService.getAccessToken(this.code).subscribe(token => {
-          this.route.navigate(['main']);
+          this.route.navigate(['albums']);
         }, error => {
           console.log(error);
         });

@@ -6,8 +6,15 @@ import { MainComponent } from './main.component';
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent
+    component: MainComponent,
+    children: [
+      {
+        path: ':artist',
+        loadChildren: () => import('./album-details/album-details.module').then(m => m.AlbumDetailsModule)
+      }
+    ]
   },
+
 ];
 
 @NgModule({
