@@ -1,0 +1,19 @@
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  color:#fafafa;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.body  {
+  &__high-emphasis {
+    font-weight: bold;
+    size: 48px;
+    text-align: left;
+    color: #999;
+  }
+}

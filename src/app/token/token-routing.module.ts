@@ -5,13 +5,13 @@ import { TokenComponent } from './token.component';
 
 const routes: Routes = [
   {
-    path: 'token',
+    path: '',
     component: TokenComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class TokenRoutingModule { }

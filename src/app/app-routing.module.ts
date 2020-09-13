@@ -5,6 +5,10 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
+    loadChildren: () => import('./token/token.module').then(m => m.TokenModule)
+  },
+  {
+    path: 'main',
     loadChildren: () => import('./main/main.module').then(m => m.MainModule)
   },
   {
