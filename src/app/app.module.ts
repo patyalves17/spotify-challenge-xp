@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { StoreModule } from '@ngrx/store';
@@ -13,6 +13,7 @@ import * as fromApp from './store/app.reducer'
 import { EffectsModule } from '@ngrx/effects';
 import { AlbumEffects } from './store/albums-list/albums.effects';
 import { AlbumsDetailsEffects } from './store/album-details/album-details.effects';
+import { BaseInterceptor } from './services/base.interceptor';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,13 @@ import { AlbumsDetailsEffects } from './store/album-details/album-details.effect
     EffectsModule.forRoot([AlbumEffects, AlbumsDetailsEffects]),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BaseInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
