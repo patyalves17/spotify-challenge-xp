@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { environment } from './../../environments/environment';
 
 @Component({
@@ -33,7 +33,7 @@ export class TokenComponent implements OnInit {
     window.location.href = `https://accounts.spotify.com/authorize?`
       + `response_type=${encodeURIComponent('code')}`
       + `&client_id=${encodeURIComponent(environment.spotify.clientID)}`
-      + `&scope=${encodeURIComponent('user-read-private user-read-email')}`
+      + `&scope=${encodeURIComponent('user-read-private user-read-email user-read-playback-state')}`
       + `&redirect_uri=${encodeURIComponent('http://localhost:4200')}`
       + `&state: ${encodeURIComponent(this.generateRandomString(16))}`;
   }

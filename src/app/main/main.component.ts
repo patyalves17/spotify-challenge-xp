@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MainService } from '../services/main.service';
 
 @Component({
   selector: 'app-main',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  albums = [];
 
-  constructor() { }
+  constructor(private mainService: MainService) { }
 
   ngOnInit(): void {
+  }
+
+
+  doSearch($event) {
+    this.mainService.getSearch($event).subscribe(res => {
+      this.albums = res['albums']['items'];
+      console.log(this.albums);
+    });
   }
 
 }
