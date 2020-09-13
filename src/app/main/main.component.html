@@ -1,4 +1,4 @@
 <div class="content">
   <app-search (typing$)="doSearch($event)"></app-search>
-  <app-albums [albums]="albums" [filter]="filter"> </app-albums>
+  <app-albums-list [albums]="albums" [filter]="filter" (showAlbum$)="showAlbumDetails($event)"> </app-albums-list>
 </div>

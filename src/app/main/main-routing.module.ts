@@ -7,13 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: MainComponent,
-    children: [
-      {
-        path: ':artist',
-        loadChildren: () => import('./album-details/album-details.module').then(m => m.AlbumDetailsModule)
-      }
-    ]
   },
+  {
+    path: ':artist',
+    loadChildren: () => import('../album-details/album-details.module').then(m => m.AlbumDetailsModule)
+  }
 
 ];
 

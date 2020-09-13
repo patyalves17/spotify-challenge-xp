@@ -1,0 +1,10 @@
+<p>DEtails</p>
+<div *ngIf="album" class="details">
+  <img [src]=" album.images[0].url" [alt]="album.name" class="details__image" />
+
+  <ul>
+    <li *ngFor="let track of album.tracks.items">
+      {{track.track_number}} - {{track.name}} {{msToTime(track.duration_ms)}}
+    </li>
+  </ul>
+</div>

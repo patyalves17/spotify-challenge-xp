@@ -10,6 +10,9 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { TokenRoutingModule } from './token/token-routing.module';
 import * as fromApp from './store/app.reducer'
+import { EffectsModule } from '@ngrx/effects';
+import { AlbumEffects } from './store/albums-list/albums.effects';
+import { AlbumsDetailsEffects } from './store/album-details/album-details.effects';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,7 @@ import * as fromApp from './store/app.reducer'
     HttpClientModule,
     TokenRoutingModule,
     StoreModule.forRoot(fromApp.appReducer),
+    EffectsModule.forRoot([AlbumEffects, AlbumsDetailsEffects]),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
   ],
   providers: [],

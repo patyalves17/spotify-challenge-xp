@@ -1,18 +1,14 @@
 import { AlbumsActions, AlbumsActionTypes } from './albums-list.actions';
 
 export interface State {
-  data: {
-    list: []
-  },
+  list: []
   error: null,
   loading: false,
   loaded: false
 }
 
 const initialState: any = {
-  data: {
-    list: []
-  },
+  list: [],
   error: null,
   loading: false,
   loaded: false
@@ -33,12 +29,19 @@ export function reducer(state = initialState, action: AlbumsActions) {
     case AlbumsActionTypes.AlbumsSuccess: {
       return {
         ...state,
-        data: {
-          albums: action.payload.list
-        },
+        list: action.payload,
         error: null,
-        loading: true,
-        loaded: false
+        loading: false,
+        loaded: true
+      }
+    }
+
+    case AlbumsActionTypes.AlbumsFailure: {
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+        loaded: true
       }
     }
 
@@ -47,18 +50,3 @@ export function reducer(state = initialState, action: AlbumsActions) {
   }
 }
 
-// const recipeReducer = (state = initialState, action: RecipesAction.RecipesActions) => {
-//   switch (action.type) {
-//     case RecipesAction.SET_RECIPES:
-//       return {
-//         ...state,
-//         recipes: [...action.payload]
-//       }
-
-
-//     default:
-//       return state
-//   }
-// }
-
-// export { recipeReducer }
