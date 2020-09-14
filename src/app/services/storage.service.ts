@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { BaseService } from './base.service';
@@ -45,5 +46,12 @@ export class StorageService {
 
   public hasLocalStorage(key: string): boolean {
     return localStorage.hasOwnProperty(key);
+  }
+
+  public setHistoryLocalStorage(key: string, value: any) {
+    let history = this.hasLocalStorage(key) ? JSON.parse(this.getLocalStorage(key)) : [];
+
+    history.unshift(value);
+    this.setLocalStorage(key, JSON.stringify(history));
   }
 }
