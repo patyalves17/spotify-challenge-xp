@@ -19,7 +19,7 @@ export class AuthService {
 
     const payload = new HttpParams()
       .set('code', code)
-      .set('redirect_uri', 'http://localhost:4200')
+      .set('redirect_uri', environment.spotify.redirectUri)
       .set('grant_type', 'authorization_code');
 
     return this.http.post('https://accounts.spotify.com/api/token',
