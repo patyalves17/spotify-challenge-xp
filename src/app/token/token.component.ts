@@ -12,7 +12,7 @@ export class TokenComponent implements OnInit {
 
   code: string = '';
 
-  constructor(private authService: AuthService, private route: Router, private router: ActivatedRoute,) { }
+  constructor(private authService: AuthService, private route: Router, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.router.queryParams.subscribe(params => {
