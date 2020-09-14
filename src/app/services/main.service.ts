@@ -7,21 +7,37 @@ import { of } from 'rxjs';
   providedIn: 'root'
 })
 export class MainService {
+  public responseCache = new Map();
 
   constructor(
     private http: HttpClient) {
   }
 
   getSearch(search: string) {
-    return this.http.get(`https://api.spotify.com/v1/search?q=${search}&type=album`)
-      .pipe(map(result => {
-        return {
-          albums: result['albums']['items'],
-          filter: search
-        }
-      }),
-        catchError((errorResponse: HttpErrorResponse) => of(errorResponse))
-      )
+    const url = `https://api.spotify.com/v1/search?q=${search}&type=album`;
+    const searchFromCache = this.responseCache.get(url);
+
+    if (searchFromCache) {
+      return of(searchFromCache);
+    }
+
+    const response = this.http.get<any>(url);
+
+    response.subscribe(result => {
+
+      this.responseCache.set(url, {
+        albums: result['albums']['items'],
+        filter: search
+      })
+
+    });
+    return response.pipe(map(result => {
+      return {
+        albums: result['albums']['items'],
+        filter: search
+      }
+    }));
+
   }
 
   getAlbumDetails(id: string) {

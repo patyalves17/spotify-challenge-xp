@@ -18,7 +18,7 @@ export class SearchComponent implements AfterViewInit {
     fromEvent(this.input.nativeElement, 'keyup')
       .pipe(
         filter(Boolean),
-        debounceTime(300),
+        debounceTime(500),
         distinctUntilChanged(),
         tap((text) => {
           console.log(this.input.nativeElement.value)
