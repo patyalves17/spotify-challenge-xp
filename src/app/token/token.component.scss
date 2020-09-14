@@ -24,7 +24,8 @@
     }
 
     &__btn {
-      color: $text-primary;
+      color: $text-tertiary;
+      background-color: $primary;
       padding: 12px 24px;
       line-height: 1;
       border: none;
@@ -33,21 +34,13 @@
       overflow: hidden;
       cursor: pointer;
       transition: 0.35s;
+
+      &:hover,
+      &:focus {
+        box-shadow: inset 0 0 0 2em $text-primary;
+      }
     }
 
-    &__btn:hover,
-    &__btn:focus {
-      box-shadow: inset 0 0 0 2em $primary;
-      color: $text-tertiary;
-    }
   }
 
-  &__link {
-    text-decoration: none;
-    color: $text-tertiary;
-
-    &:hover {
-      color: $primary;
-    }
-  }
 }

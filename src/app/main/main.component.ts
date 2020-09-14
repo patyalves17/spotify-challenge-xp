@@ -25,7 +25,10 @@ export class MainComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.albums$.subscribe(albums => this.albums = albums.list);
+    this.albums$.subscribe(albums => {
+      this.filter = albums.filter;
+      this.albums = albums.list;
+    });
   }
 
 

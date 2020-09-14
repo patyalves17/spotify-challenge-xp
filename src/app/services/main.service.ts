@@ -12,7 +12,12 @@ export class MainService {
 
   getSearch(search: string) {
     return this.http.get(`https://api.spotify.com/v1/search?q=${search}&type=album`)
-      .pipe(map(result => result['albums']['items']));
+      .pipe(map(result => {
+        return {
+          albums: result['albums']['items'],
+          filter: search
+        }
+      }));
   }
 
   getAlbumDetails(id: string) {

@@ -1,7 +1,8 @@
 import { AlbumsActions, AlbumsActionTypes } from './albums-list.actions';
 
 export interface State {
-  list: []
+  list: [],
+  filter: null,
   error: null,
   loading: false,
   loaded: false
@@ -9,6 +10,7 @@ export interface State {
 
 const initialState: any = {
   list: [],
+  filter: null,
   error: null,
   loading: false,
   loaded: false
@@ -29,7 +31,8 @@ export function reducer(state = initialState, action: AlbumsActions) {
     case AlbumsActionTypes.AlbumsSuccess: {
       return {
         ...state,
-        list: action.payload,
+        list: action.payload.albums,
+        filter: action.payload.filter,
         error: null,
         loading: false,
         loaded: true

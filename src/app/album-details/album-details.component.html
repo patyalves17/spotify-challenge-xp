@@ -1,5 +1,5 @@
 <div class="content">
-  <p class="secondary__text body my-8"> <i class="back"></i> Voltar</p>
+  <p class="secondary__text body my-8" [routerLink]="'/albums'"> <i class="back"></i> Voltar</p>
   <div *ngIf="album" class="details">
     <div class="details__album">
       <img [src]=" album.images[0].url" [alt]="album.name" />
