@@ -21,7 +21,7 @@ export class TokenComponent implements OnInit {
         this.authService.getAccessToken(this.code).subscribe(token => {
           this.route.navigate(['albums']);
         }, error => {
-          console.log(error);
+          console.error(error);
         });
       }
     });

@@ -32,7 +32,6 @@ export class BaseInterceptor implements HttpInterceptor {
     // return next.handle(authenticateRequest);
 
     return next.handle(authenticateRequest).pipe(catchError(error => {
-      console.log(error);
       if (error instanceof HttpErrorResponse && error.status === 401) {
         // return this.handle401Error(request, next);
         this.storageService.removeSessionStorage('refresh_token');

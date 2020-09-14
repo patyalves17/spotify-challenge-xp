@@ -20,10 +20,7 @@ export class SearchComponent implements AfterViewInit {
         filter(Boolean),
         debounceTime(500),
         distinctUntilChanged(),
-        tap((text) => {
-          console.log(this.input.nativeElement.value)
-          this.typing$.emit(this.input.nativeElement.value)
-        })
+        tap((text) => this.typing$.emit(this.input.nativeElement.value))
       )
       .subscribe();
   }

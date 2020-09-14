@@ -29,7 +29,6 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.history = JSON.parse(this.storageService.getLocalStorage('history'));
-    console.log(this.history);
     this.albums$.subscribe(albums => {
       this.filter = albums.filter;
       this.albums = albums.list;
