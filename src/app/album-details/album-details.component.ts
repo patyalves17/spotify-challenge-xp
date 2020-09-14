@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -17,8 +18,12 @@ export class AlbumDetailsComponent implements OnInit {
   album = null;
 
   public albumDetails$: Observable<any> = this.store.select(getAlbumDetails);
+  private audio = new Audio();
 
-  constructor(private store: Store<fromApp.AppStateInterface>, private router: Router,) { }
+  constructor(
+    private store: Store<fromApp.AppStateInterface>,
+    private router: Router) {
+  }
 
 
   ngOnInit(): void {
@@ -29,6 +34,12 @@ export class AlbumDetailsComponent implements OnInit {
       }
       this.album = result.album;
     });
+  }
+
+  playTrack(track) {
+    this.audio.src = track.preview_url;
+    this.audio.load();
+    this.audio.play();
   }
 
 

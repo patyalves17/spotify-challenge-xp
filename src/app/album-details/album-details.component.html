@@ -1,5 +1,5 @@
 <div class="content">
-  <p class="secondary__text body my-8" [routerLink]="'/albums'"> <i class="back"></i> Voltar</p>
+  <p class="secondary__text body my-8"> <i class="back"></i> Voltar</p>
   <div *ngIf="album" class="details">
     <div class="details__album">
       <img [src]=" album.images[0].url" [alt]="album.name" />
@@ -10,7 +10,7 @@
     </div>
     <div class="details__tracks">
       <ul>
-        <li *ngFor="let track of album.tracks.items">
+        <li *ngFor="let track of album.tracks.items" (click)="playTrack(track)">
           <span class="primary__text">
             {{track.track_number}}.
             <span class="secondary__text">{{track.name}}</span>
