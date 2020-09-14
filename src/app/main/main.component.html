@@ -2,6 +2,7 @@
   <app-search (typing$)="doSearch($event)"></app-search>
   <app-albums-list [albums]="albums" [filter]="filter" (showAlbum$)="showAlbumDetails($event)"> </app-albums-list>
 
-  <app-albums-list [albums]="history" [titulo]="'Albuns buscados recentemente'" (showAlbum$)="showAlbumDetails($event)">
+  <app-albums-list *ngIf="albums.length == 0" [albums]="history" [titulo]="'Albuns buscados recentemente'"
+    (showAlbum$)="showAlbumDetails($event)">
   </app-albums-list>
 </div>
