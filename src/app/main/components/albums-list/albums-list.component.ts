@@ -9,6 +9,7 @@ export class AlbumsListComponent implements OnInit {
 
   @Input() albums: [];
   @Input() filter: string;
+  @Input() titulo: string;
   @Output() showAlbum$ = new EventEmitter<any>();
 
   constructor() { }

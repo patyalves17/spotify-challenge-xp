@@ -1,4 +1,5 @@
 <p class="heading secondary__text my-8" *ngIf="filter">Resultados por {{filter}}</p>
+<p class="heading secondary__text my-8" *ngIf="titulo">{{titulo}}</p>
 <div class="albums">
   <div class="albums__items" *ngFor="let album of albums">
     <app-album-card [album]="album" ($clicked)="showAlbum(album)"></app-album-card>
