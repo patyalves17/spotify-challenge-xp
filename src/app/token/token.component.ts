@@ -15,6 +15,11 @@ export class TokenComponent implements OnInit {
   constructor(private authService: AuthService, private route: Router, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    if (this.authService.isAuthenticated()) {
+      this.route.navigate(['albums']);
+    }
+
     this.router.queryParams.subscribe(params => {
       this.code = params['code'];
       if (this.code) {
@@ -33,7 +38,7 @@ export class TokenComponent implements OnInit {
     window.location.href = `https://accounts.spotify.com/authorize?`
       + `response_type=${encodeURIComponent('code')}`
       + `&client_id=${encodeURIComponent(environment.spotify.clientID)}`
-      + `&scope=${encodeURIComponent('user-read-private user-read-email user-read-playback-state')}`
+      + `&scope=${encodeURIComponent('user-read-private user-read-email')}`
       + `&redirect_uri=${encodeURIComponent(environment.spotify.redirectUri)}`
       + `&state: ${encodeURIComponent(this.generateRandomString(16))}`;
   }
