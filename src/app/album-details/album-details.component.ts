@@ -1,5 +1,4 @@
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -14,15 +13,19 @@ import { getAlbumDetails } from '../store/app.selectors';
   templateUrl: './album-details.component.html',
   styleUrls: ['./album-details.component.scss']
 })
-export class AlbumDetailsComponent implements OnInit {
+export class AlbumDetailsComponent implements OnInit, OnDestroy {
   album = null;
+  isPlaying = false
+  currentTrack = {
+    name: '',
+    duration_ms: 0
+  };
 
   public albumDetails$: Observable<any> = this.store.select(getAlbumDetails);
-  private audio = new Audio();
+  public audio: any;
 
-  constructor(
-    private store: Store<fromApp.AppStateInterface>,
-    private router: Router) {
+  constructor(private store: Store<fromApp.AppStateInterface>, private router: Router,) {
+    this.audio = new Audio();
   }
 
 
@@ -36,10 +39,26 @@ export class AlbumDetailsComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.audio.pause()
+  }
+
   playTrack(track) {
-    this.audio.src = track.preview_url;
-    this.audio.load();
-    this.audio.play();
+    this.currentTrack = track
+    this.isPlaying = true
+    this.audio.src = track.preview_url
+    this.audio.load()
+    this.audio.play()
+  }
+
+  play() {
+    this.audio.play()
+    this.isPlaying = true
+  }
+
+  pause() {
+    this.audio.pause()
+    this.isPlaying = false
   }
 
 
@@ -64,3 +83,4 @@ export class AlbumDetailsComponent implements OnInit {
 
 
 }
+

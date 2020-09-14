@@ -1,5 +1,15 @@
 <div class="content">
   <p class="secondary__text body my-8"> <i class="back"></i> Voltar</p>
+  <section class="current-track">
+    <div class="current-track__actions">
+      <a class="ion-ios-play play" [ngClass]="{'play__active': isPlaying}" (click)="play()"></a>
+      <a class="ion-ios-pause pause" [ngClass]="{'pause__active': !isPlaying}" (click)="pause()"></a>
+    </div>
+    <div class="current-track__progress">
+      <div class="current-track__progress__start">{{ currentTrack.name }}</div>
+      <div class="current-track__progress__finish">{{ msToTime(currentTrack.duration_ms) }}</div>
+    </div>
+  </section>
   <div *ngIf="album" class="details">
     <div class="details__album">
       <img [src]=" album.images[0].url" [alt]="album.name" />
