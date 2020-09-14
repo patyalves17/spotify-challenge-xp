@@ -1,13 +1,16 @@
-import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 import { StorageService } from './storage.service';
 
 
 @Injectable()
 export class BaseInterceptor implements HttpInterceptor {
 
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService, private authService: AuthService) { }
+
 
   /**
    *
@@ -21,7 +24,18 @@ export class BaseInterceptor implements HttpInterceptor {
 
 
     const authenticateRequest = request.clone(this.setHeaders(request));
-    return next.handle(authenticateRequest);
+
+    // return next.handle(authenticateRequest);
+
+    return next.handle(authenticateRequest).pipe(catchError(error => {
+      console.log(error);
+      if (error instanceof HttpErrorResponse && error.status === 401) {
+        // return this.handle401Error(request, next);
+      } else {
+        return throwError(error);
+      }
+      return throwError(error);
+    }));
   }
 
   setHeaders(request) {

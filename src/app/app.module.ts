@@ -1,3 +1,4 @@
+import { ErrorInterceptor } from './services/error.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -14,7 +15,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { AlbumEffects } from './store/albums-list/albums.effects';
 import { AlbumsDetailsEffects } from './store/album-details/album-details.effects';
 import { BaseInterceptor } from './services/base.interceptor';
-
 @NgModule({
   declarations: [
     AppComponent
