@@ -34,7 +34,7 @@ export class TokenComponent implements OnInit {
       + `response_type=${encodeURIComponent('code')}`
       + `&client_id=${encodeURIComponent(environment.spotify.clientID)}`
       + `&scope=${encodeURIComponent('user-read-private user-read-email user-read-playback-state')}`
-      + `&redirect_uri=${encodeURIComponent('http://localhost:4200')}`
+      + `&redirect_uri=${encodeURIComponent(environment.spotify.redirectUri)}`
       + `&state: ${encodeURIComponent(this.generateRandomString(16))}`;
   }
 
