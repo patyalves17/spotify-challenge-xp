@@ -1,5 +1,6 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
@@ -9,7 +10,10 @@ import { StorageService } from './storage.service';
 @Injectable()
 export class BaseInterceptor implements HttpInterceptor {
 
-  constructor(private storageService: StorageService, private authService: AuthService) { }
+  constructor(
+    private storageService: StorageService,
+    private authService: AuthService,
+    private route: Router) { }
 
 
   /**
@@ -31,6 +35,7 @@ export class BaseInterceptor implements HttpInterceptor {
       console.log(error);
       if (error instanceof HttpErrorResponse && error.status === 401) {
         // return this.handle401Error(request, next);
+        this.route.navigate(['']);
       } else {
         return throwError(error);
       }

@@ -58,5 +58,9 @@ export class AuthService {
     }));
   }
 
+  isAuthenticated(): boolean {
+    return this.storageService.hasSessionStorage('access_token');
+  }
+
 
 }

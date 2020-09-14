@@ -1,5 +1,5 @@
 <div class="content">
-  <p class="secondary__text body my-8"> <i class="back"></i> Voltar</p>
+  <p class="secondary__text body my-8" [routerLink]="'/albums'"> <i class="back"></i> Voltar</p>
   <section class="current-track">
     <div class="current-track__actions">
       <a class="ion-ios-play play" [ngClass]="{'play__active': isPlaying}" (click)="play()"></a>
