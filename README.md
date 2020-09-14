@@ -18,7 +18,7 @@ Once you have created your app, replace the `clientID`, and `clientSecret` in th
 
 ## Run the project
 
-Run `ng serve`|`npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve`|`npm start` for a dev server. Navigate to `http://localhost:4200`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
