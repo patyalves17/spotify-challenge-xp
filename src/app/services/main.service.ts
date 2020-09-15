@@ -41,10 +41,7 @@ export class MainService {
   }
 
   getAlbumDetails(id: string) {
-    return this.http.get(`https://api.spotify.com/v1/albums/${id}`)
-      .pipe(
-        catchError((errorResponse: HttpErrorResponse) => of(errorResponse))
-      );
+    return this.http.get(`https://api.spotify.com/v1/albums/${id}`);
   }
 
 

@@ -15,8 +15,7 @@ export class AlbumEffects {
     ofType(AlbumsActionTypes.AlbumsRequest),
     switchMap((action: AlbumsRequest) =>
       this.mainService.getSearch(action.payload).pipe(
-        map(payload => new AlbumsSuccess(payload)),
-        catchError(error => of(new AlbumsFailure(error)))
+        map(payload => new AlbumsSuccess(payload))
       ))
   );
 

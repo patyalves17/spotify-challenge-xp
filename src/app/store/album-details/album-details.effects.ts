@@ -15,8 +15,7 @@ export class AlbumsDetailsEffects {
     ofType(AlbumDetailsActionTypes.AlbumDetailsRequest),
     switchMap((action: AlbumDetailsRequest) =>
       this.mainService.getAlbumDetails(action.payload).pipe(
-        map(payload => new AlbumDetailsSuccess(payload)),
-        catchError(error => of(new AlbumDetailsFailure(error)))
+        map(payload => new AlbumDetailsSuccess(payload))
       ))
   );
 

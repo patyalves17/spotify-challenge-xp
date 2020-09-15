@@ -1,8 +1,7 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { StorageService } from './storage.service';
 
@@ -12,8 +11,7 @@ export class BaseInterceptor implements HttpInterceptor {
 
   constructor(
     private storageService: StorageService,
-    private authService: AuthService,
-    private route: Router) { }
+    private authService: AuthService) { }
 
 
   /**
@@ -24,21 +22,37 @@ export class BaseInterceptor implements HttpInterceptor {
    */
 
   intercept(request: HttpRequest<any>, next: HttpHandler):
-    Observable<HttpEvent<any>> {
+    Observable<any> {
 
     const authenticateRequest = request.clone(this.setHeaders(request));
 
     return next.handle(authenticateRequest).pipe(catchError(error => {
-      if (error.status === 401 || error.status === 403) {
-        this.authService.getRefreshToken().subscribe(res => {
+      return this.handleResponseError(error, request, next);
+    }));
+  }
+
+  handleResponseError(error, request?, next?) {
+    console.log(request);
+
+    if (error.status === 401) {
+      return this.authService.getRefreshToken().pipe(
+        switchMap(() => {
           const authenticateRequest = request.clone(this.setHeaders(request));
           return next.handle(authenticateRequest);
-        });
-      } else {
-        return next.handle(authenticateRequest);
-      }
+        }),
+        catchError(e => {
+          if (e.status !== 401) {
+            return this.handleResponseError(e);
+          } else {
+            // this.storageService.clearSessionStorage();
+            // this.route.navigate(['']);
+          }
+        }));
+    }
 
-    }));
+
+    return throwError(error);
+
   }
 
   setHeaders(request) {
