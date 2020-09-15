@@ -29,18 +29,16 @@ export class BaseInterceptor implements HttpInterceptor {
     const authenticateRequest = request.clone(this.setHeaders(request));
 
     return next.handle(authenticateRequest).pipe(catchError(error => {
-      // const authenticateRequest = request.clone(this.setHeaders(request));
-
       if (error.status === 401 || error.status === 403) {
         this.authService.getRefreshToken().subscribe(res => {
           const authenticateRequest = request.clone(this.setHeaders(request));
           return next.handle(authenticateRequest);
         });
+      } else {
+        return next.handle(authenticateRequest);
       }
-      // return next.handle(authenticateRequest);
-    }));
-    // return next.handle(authenticateRequest)
 
+    }));
   }
 
   setHeaders(request) {
