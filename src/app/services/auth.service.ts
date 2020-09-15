@@ -10,8 +10,6 @@ import { StorageService } from './storage.service';
 })
 export class AuthService {
 
-  public codeVerifier: string;
-
   constructor(
     private http: HttpClient,
     private storageService: StorageService) {

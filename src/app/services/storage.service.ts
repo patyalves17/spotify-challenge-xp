@@ -25,6 +25,10 @@ export class StorageService {
     sessionStorage.removeItem(key);
   }
 
+  public clearSessionStorage() {
+    sessionStorage.clear();
+  }
+
   public hasSessionStorage(key: string): boolean {
     return sessionStorage.hasOwnProperty(key);
   }

@@ -34,11 +34,7 @@ export class BaseInterceptor implements HttpInterceptor {
     return next.handle(authenticateRequest).pipe(catchError(error => {
       if (error instanceof HttpErrorResponse && error.status === 401) {
         // return this.handle401Error(request, next);
-        this.storageService.removeSessionStorage('refresh_token');
-        this.storageService.removeSessionStorage('scope');
-        this.storageService.removeSessionStorage('access_token');
-        this.storageService.removeSessionStorage('token_type');
-        this.storageService.removeSessionStorage('expires_in');
+        this.storageService.clearSessionStorage();
         this.route.navigate(['']);
       } else {
         return throwError(error);

@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { AuthService } from '../services/auth.service';
 import { environment } from './../../environments/environment';
-
-// import * as sha256 from 'js-sha256';
-import { sha256, sha224 } from 'js-sha256';
 import { StorageService } from '../services/storage.service';
-// const shajs = require('sha.js')
 
 @Component({
   selector: 'app-token',
@@ -46,14 +43,9 @@ export class TokenComponent implements OnInit {
   async getToken() {
 
     const random = this.generateRandomString(50);
-    const hashed = await this.sha256(random)
-    const codeChallenge = this.base64urlencode(hashed);
+    const codeChallenge = (await this.pkce_challenge_from_verifier(random)).toString();
 
-    console.log('random:', random);
-    console.log('hashed:', hashed);
-    console.log('codeChallenge:', codeChallenge);
-
-    this.storageService.setSessionStorage('code_verifier', codeChallenge);
+    this.storageService.setSessionStorage('code_verifier', random);
 
     window.location.href = `https://accounts.spotify.com/authorize?`
       + `&client_id=${encodeURIComponent(environment.spotify.clientID)}`
@@ -65,12 +57,17 @@ export class TokenComponent implements OnInit {
     + `&scope=${encodeURIComponent('user-read-private user-read-email')}`
   }
 
+  async pkce_challenge_from_verifier(v) {
+    let hashed = await this.sha256(v);
+    let base64encoded = this.base64urlencode(hashed);
+    return base64encoded;
+  }
 
   generateRandomString(length) {
     let text = '';
     let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-    for (var i = 0; i < length; i++) {
+    for (let i = 0; i < length; i++) {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return text;
@@ -84,8 +81,10 @@ export class TokenComponent implements OnInit {
   }
 
   base64urlencode(a) {
-    return btoa(String.fromCharCode.apply(null, new Uint8Array(a))
-      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''))
+    return btoa(String.fromCharCode.apply(null, new Uint8Array(a)))
+      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
   }
+
+
 
 }
