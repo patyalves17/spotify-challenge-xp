@@ -26,30 +26,33 @@ export class BaseInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
 
-
     const authenticateRequest = request.clone(this.setHeaders(request));
 
-    // return next.handle(authenticateRequest);
-
     return next.handle(authenticateRequest).pipe(catchError(error => {
-      if (error instanceof HttpErrorResponse && error.status === 401) {
-        // return this.handle401Error(request, next);
-        this.storageService.clearSessionStorage();
-        this.route.navigate(['']);
-      } else {
-        return throwError(error);
+      // const authenticateRequest = request.clone(this.setHeaders(request));
+
+      if (error.status === 401 || error.status === 403) {
+        this.authService.getRefreshToken().subscribe(res => {
+          const authenticateRequest = request.clone(this.setHeaders(request));
+          return next.handle(authenticateRequest);
+        });
       }
-      return throwError(error);
+      // return next.handle(authenticateRequest);
     }));
+    // return next.handle(authenticateRequest)
+
   }
 
   setHeaders(request) {
     const headerSettings: { [name: string]: string | string[]; } = {};
 
-    if (this.storageService.hasSessionStorage('access_token')) {
+    if (this.storageService.hasSessionStorage('access_token')
+      && (request.url.indexOf('/token') === -1)) {
+
       const tokenType = this.storageService.getSessionStorage('token_type');
       const accessToken = this.storageService.getSessionStorage('access_token');
       headerSettings['Authorization'] = `${tokenType} ${accessToken}`;
+
     } else {
       return headerSettings;
     }

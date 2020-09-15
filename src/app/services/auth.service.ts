@@ -44,14 +44,14 @@ export class AuthService {
 
     const payload = new HttpParams()
       .set('refresh_token', this.storageService.getSessionStorage('refresh_token'))
+      .set('client_id', environment.spotify.clientID)
       .set('grant_type', 'refresh_token');
 
     return this.http.post('https://accounts.spotify.com/api/token',
       payload,
       {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Authorization': 'Basic ' + window.btoa((environment.spotify.clientID + ':' + environment.spotify.clientSecret))
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       },
 

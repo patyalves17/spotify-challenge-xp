@@ -38,7 +38,9 @@ export class MainComponent implements OnInit {
 
   doSearch($event) {
     this.filter = $event;
-    this.store.dispatch(new AlbumsRequest(this.filter));
+    if (this.filter) {
+      this.store.dispatch(new AlbumsRequest(this.filter));
+    }
   }
 
   showAlbumDetails(item) {
