@@ -53,8 +53,8 @@ export class TokenComponent implements OnInit {
       + `&redirect_uri=${encodeURIComponent(environment.spotify.redirectUri)}`
       + `&code_challenge_method	=${encodeURIComponent('S256')}`
       + `&code_challenge=${encodeURIComponent(codeChallenge)}`
-      + `&state: ${encodeURIComponent(this.generateRandomString(16))}`;
-    + `&scope=${encodeURIComponent('user-read-private user-read-email')}`
+      + `&state= ${encodeURIComponent(this.generateRandomString(16))}`
+      + `&scope=${encodeURIComponent('user-read-private user-read-email')}`;
   }
 
   async pkce_challenge_from_verifier(v) {

@@ -1,5 +1,4 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-// import { State as AlbumState } from '../main/store/albums-list.reducer';
 import { State as AlbumState } from './albums-list/albums-list.reducer';
 import { State as AlbumDetailsState } from './album-details/album-details.reducer';
 

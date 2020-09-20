@@ -43,9 +43,6 @@ export class BaseInterceptor implements HttpInterceptor {
         catchError(e => {
           if (e.status !== 401) {
             return this.handleResponseError(e);
-          } else {
-            // this.storageService.clearSessionStorage();
-            // this.route.navigate(['']);
           }
         }));
     }

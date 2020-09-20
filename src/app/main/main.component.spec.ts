@@ -10,7 +10,6 @@ import { MainComponent } from './main.component';
 describe('MainComponent', () => {
   let component: MainComponent;
   let fixture: ComponentFixture<MainComponent>;
-  let store: TestStore<any>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

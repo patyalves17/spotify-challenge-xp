@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { MainService } from '../../services/main.service';
-import { AlbumDetailsActionTypes, AlbumDetailsFailure, AlbumDetailsRequest, AlbumDetailsSuccess } from './album-details.actions';
+import { AlbumDetailsActionTypes, AlbumDetailsRequest, AlbumDetailsSuccess } from './album-details.actions';
 
 
 @Injectable()
