@@ -32,7 +32,6 @@ export class BaseInterceptor implements HttpInterceptor {
   }
 
   handleResponseError(error, request?, next?) {
-    console.log(request);
 
     if (error.status === 401) {
       return this.authService.getRefreshToken().pipe(
@@ -43,9 +42,6 @@ export class BaseInterceptor implements HttpInterceptor {
         catchError(e => {
           if (e.status !== 401) {
             return this.handleResponseError(e);
-          } else {
-            // this.storageService.clearSessionStorage();
-            // this.route.navigate(['']);
           }
         }));
     }

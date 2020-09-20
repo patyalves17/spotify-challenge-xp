@@ -2,7 +2,7 @@
 import * as fromAlbums from './albums-list/albums-list.reducer';
 import * as formAlbumDetails from './album-details/album-details.reducer';
 
-import { ActionReducerMap } from '@ngrx/store'
+import { ActionReducerMap } from '@ngrx/store';
 
 export interface AppStateInterface {
   albums: fromAlbums.State;

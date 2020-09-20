@@ -27,7 +27,6 @@ export class TokenComponent implements OnInit {
     }
 
     this.router.queryParams.subscribe(params => {
-      // console.log(params);
       this.code = params['code'];
       if (this.code) {
         this.authService.getAccessToken(this.code).subscribe(token => {
@@ -53,8 +52,8 @@ export class TokenComponent implements OnInit {
       + `&redirect_uri=${encodeURIComponent(environment.spotify.redirectUri)}`
       + `&code_challenge_method	=${encodeURIComponent('S256')}`
       + `&code_challenge=${encodeURIComponent(codeChallenge)}`
-      + `&state: ${encodeURIComponent(this.generateRandomString(16))}`;
-    + `&scope=${encodeURIComponent('user-read-private user-read-email')}`
+      + `&state= ${encodeURIComponent(this.generateRandomString(16))}`
+      + `&scope=${encodeURIComponent('user-read-private user-read-email')}`;
   }
 
   async pkce_challenge_from_verifier(v) {
@@ -84,7 +83,4 @@ export class TokenComponent implements OnInit {
     return btoa(String.fromCharCode.apply(null, new Uint8Array(a)))
       .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
   }
-
-
-
 }
