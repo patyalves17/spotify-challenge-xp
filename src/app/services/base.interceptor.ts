@@ -32,7 +32,6 @@ export class BaseInterceptor implements HttpInterceptor {
   }
 
   handleResponseError(error, request?, next?) {
-    console.log(request);
 
     if (error.status === 401) {
       return this.authService.getRefreshToken().pipe(
