@@ -14,6 +14,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AlbumEffects } from './store/albums-list/albums.effects';
 import { AlbumsDetailsEffects } from './store/album-details/album-details.effects';
 import { BaseInterceptor } from './services/base.interceptor';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { BaseInterceptor } from './services/base.interceptor';
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([AlbumEffects, AlbumsDetailsEffects]),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     {
