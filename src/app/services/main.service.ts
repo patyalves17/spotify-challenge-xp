@@ -44,5 +44,15 @@ export class MainService {
     return this.http.get(`https://api.spotify.com/v1/albums/${id}`);
   }
 
+  postSubscribe(subs) {
+    return this.http.post('https://pwagran-5b05e-default-rtdb.firebaseio.com/subscriptions.json', subs,
+      {
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json'
+        }
+      });
+  }
+
 
 }
