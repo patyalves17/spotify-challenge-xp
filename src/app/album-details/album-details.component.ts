@@ -2,11 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-
-import * as fromApp from '../store/app.reducer';
-import { AlbumDetailsRequest } from '../store/album-details/album-details.actions';
-import { getAlbumDetails } from '../store/app.selectors';
-
+import { SpotifyChallengerFacade } from '../store/spotifyChallengerFacade';
 
 @Component({
   selector: 'app-album-details',
@@ -21,11 +17,12 @@ export class AlbumDetailsComponent implements OnInit, OnDestroy {
     duration_ms: 0
   };
 
-  public albumDetails$: Observable<any> = this.store.select(getAlbumDetails);
+  public albumDetails$: Observable<any>;
   public audio: any;
 
-  constructor(private store: Store<fromApp.AppStateInterface>, private router: Router,) {
+  constructor(private router: Router, private facade: SpotifyChallengerFacade) {
     this.audio = new Audio();
+    this.albumDetails$ = this.facade.albumDetails$;
   }
 
 
