@@ -7,11 +7,13 @@ import { getChallengerStateQuery } from './SpotifyChallenger.selector';
 @Injectable({ providedIn: 'root' })
 export class SpotifyChallengerFacade {
     albums$: Observable<any>;
-    albumDetails$: Observable<any>;
 
     constructor(private store: Store<any>) {
         this.albums$ = this.store.select(getChallengerStateQuery.getAlbuns);
-        this.albumDetails$ = this.store.select(getChallengerStateQuery.getAlbumDetails);
+    }
+
+    getAlbumDetails(): Observable<any> {
+        return this.store.select(getChallengerStateQuery.getAlbumDetails);
     }
 
     albumsRequest(payload): void {

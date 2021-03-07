@@ -22,7 +22,7 @@ export class AlbumDetailsComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private facade: SpotifyChallengerFacade) {
     this.audio = new Audio();
-    this.albumDetails$ = this.facade.albumDetails$;
+    this.albumDetails$ = this.facade.getAlbumDetails();
   }
 
 
